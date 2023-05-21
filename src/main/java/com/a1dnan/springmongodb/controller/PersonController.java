@@ -3,6 +3,7 @@ package com.a1dnan.springmongodb.controller;
 import com.a1dnan.springmongodb.collection.Person;
 import com.a1dnan.springmongodb.service.PersonService;
 import lombok.RequiredArgsConstructor;
+import org.bson.Document;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -54,6 +55,11 @@ public class PersonController {
         Pageable pageable
                 = PageRequest.of(page,size);
         return personService.search(name,minAge,maxAge,city,pageable);
+    }
+
+    @GetMapping("/oldest")
+    public List<Document> getOldestPerson(){
+        return personService.getOldestPersonByCity();
     }
 
 }
